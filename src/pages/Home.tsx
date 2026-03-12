@@ -36,8 +36,8 @@ export function Home() {
           TaskFlow
         </div>
         <nav className="app-header__nav">
-          <Link 
-            to="/dashboard" 
+          <Link
+            to="/dashboard"
             className="nav-link"
             style={{ textDecoration: 'none' }}
           >
@@ -49,10 +49,10 @@ export function Home() {
             </svg>
             Dashboard
           </Link>
-          <button 
+          <button
             onClick={signOut}
             className="btn-ghost"
-            style={{ 
+            style={{
               padding: '0.5rem 1rem',
               fontSize: '0.875rem'
             }}
@@ -87,13 +87,13 @@ export function Home() {
 
           {/* Task Form */}
           <TaskForm
-            onCrear={(titulo, descripcion) => crearTarea({ titulo, descripcion })}
+            onCrear={async (titulo, descripcion) => { await crearTarea({ titulo, descripcion }) }}
           />
 
           {/* Tasks Stats */}
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
             alignItems: 'center',
             marginBottom: '1rem',
             padding: '0.75rem 1rem',
@@ -101,8 +101,8 @@ export function Home() {
             borderRadius: 'var(--radius)'
           }}>
             <span className="text-muted" style={{ fontSize: '0.875rem' }}>
-              {tareas.length === 0 
-                ? 'No tienes tareas' 
+              {tareas.length === 0
+                ? 'No tienes tareas'
                 : `${tareas.length} tarea${tareas.length === 1 ? '' : 's'}`
               }
             </span>
@@ -133,10 +133,10 @@ export function Home() {
               </div>
             ) : (
               tareas.map(tarea => (
-<TaskItem
-  key={tarea.id}
-  tarea={tarea}
-  onActualizar={(id, cambios) => actualizarTarea(id, cambios)}
+                <TaskItem
+                  key={tarea.id}
+                  tarea={tarea}
+                  onActualizar={async (id, cambios) => { await actualizarTarea(id, cambios) }}
                   onEliminar={eliminarTarea}
                 />
               ))

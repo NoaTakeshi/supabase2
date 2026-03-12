@@ -8,18 +8,14 @@ export function useAuth() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-
-    // Obtener sesión actual al cargar la app
     authService.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
       setLoading(false)
     })
 
-    // Escuchar cambios de sesión (login, logout, refresh de token)
-const { data: { subscription } } = authService.onAuthStateChange(
-  (_event, session) => setUser(session?.user ?? null)  // ← added )
-);
-
+    const { data: { subscription } } = authService.onAuthStateChange(
+      async (_event, session) => { setUser(session?.user ?? null) }  // ✅ async + bloque
+    )
 
     return () => subscription.unsubscribe()
   }, [])

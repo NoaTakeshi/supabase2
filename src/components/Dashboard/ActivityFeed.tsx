@@ -22,7 +22,7 @@ export function ActivityFeed({ tareas }: { tareas: Tarea[] }) {
                   whiteSpace: 'nowrap', overflow: 'hidden',
                   textOverflow: 'ellipsis' }}>{t.titulo}</p>
                 <p style={{ margin: 0, fontSize: '0.75rem', color: '#94a3b8' }}>
-                  {fmt(t.created_at)}
+                  {t.created_at ? fmt(t.created_at) : '—'}
                 </p>
               </div>
             </div>

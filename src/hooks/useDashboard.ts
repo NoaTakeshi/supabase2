@@ -18,7 +18,7 @@ export function useDashboard() {
         dashboardService.getStats(),
         dashboardService.getActivityByDay(),
         dashboardService.getDistribution(),
-        dashboardService.getRecentActivity(10).then(r => r.data ?? []),
+        dashboardService.getRecentFeed(10),
       ])
 
       setStats(s); setActivity(a); setDistribution(d); setRecentFeed(f)

@@ -45,9 +45,9 @@ export function TaskItem({ tarea, onActualizar, onEliminar }: Props) {
     if (!titulo.trim()) return
     setActualizando(true)
     try {
-      await onActualizar(tarea.id, { 
-        titulo: titulo.trim(), 
-        descripcion: descripcion.trim() || null 
+      await onActualizar(tarea.id, {
+        titulo: titulo.trim(),
+        descripcion: descripcion.trim() || undefined
       })
       setEditando(false)
     } finally {
@@ -63,7 +63,7 @@ export function TaskItem({ tarea, onActualizar, onEliminar }: Props) {
 
   if (editando) {
     return (
-      <div className="task-item task-item--editing" style={{ 
+      <div className="task-item task-item--editing" style={{
         opacity: actualizando ? 0.7 : 1,
         flexDirection: 'column',
         alignItems: 'stretch',
@@ -153,7 +153,7 @@ export function TaskItem({ tarea, onActualizar, onEliminar }: Props) {
   }
 
   return (
-    <div 
+    <div
       className={`task-item ${tarea.completada ? 'task-item--completed' : ''}`}
       style={{ opacity: eliminando ? 0.5 : 1 }}
     >
@@ -186,7 +186,7 @@ export function TaskItem({ tarea, onActualizar, onEliminar }: Props) {
       </button>
 
       <div className="task-item__content">
-        <p 
+        <p
           className={`task-item__title ${tarea.completada ? 'task-item__title--completed' : ''}`}
           style={{
             fontWeight: 500,
@@ -202,8 +202,8 @@ export function TaskItem({ tarea, onActualizar, onEliminar }: Props) {
           </p>
         )}
         {tarea.created_at && (
-          <p style={{ 
-            fontSize: '0.75rem', 
+          <p style={{
+            fontSize: '0.75rem',
             color: 'var(--muted-foreground)',
             marginTop: '0.5rem'
           }}>
